@@ -1,3 +1,7 @@
 .new-game-button {
     background-color: #FF7518;
 }
+
+.dropdown:hover .dropdown-menu {
+display: block;
+}
