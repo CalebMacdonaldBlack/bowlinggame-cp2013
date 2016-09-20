@@ -1,0 +1,16 @@
+.new-game-form {
+    width: 30em;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 2em;
+}
+
+.create-game-btn-container {
+    margin: 0;
+    margin-top: 2em;
+    background-color: transparent;
+    text-align: center;
+}

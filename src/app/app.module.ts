@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 import { routing, appRoutingProviders }  from './app.routing';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { NewGameComponent } from './new-game/new-game.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomepageComponent
+    HomepageComponent,
+    NewGameComponent
   ],
   imports: [
     BrowserModule,
