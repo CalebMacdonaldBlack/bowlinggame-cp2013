@@ -1,0 +1,43 @@
+html{
+    font-family: 'Roboto', sans-serif;!important;
+}
+
+h1{
+    color: #333333;
+}
+h2{
+    color: #cccccc;
+}
+
+body {
+    background: #0079bf;
+
+}
+.vertical-center {
+    flex-direction: column;
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+
+.btn-group-vertical > .btn{
+    margin-top: 10px;
+    margin-bottom:20px;
+    border-radius:10px !important;
+    color: #cccccc; !important;
+
+}
+.jumbotron {
+    background-color: #026aa7;
+    border-radius: 20px !important;
+}
+
+.footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    height: 60px;
+    background-color: #026aa7;
+}
+
