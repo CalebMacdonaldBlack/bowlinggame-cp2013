@@ -7,10 +7,116 @@ import { Score } from '../models/score';
 
 let GAMES = [
   new Game(
+    1,
     "game 1",
     [
       new ScoreCard(
         new Player("Caleb"),
+        [
+          new Score(
+            [
+              new Bowl(2),
+              new Bowl(8)
+            ],
+            
+          ),
+          new Score(
+            [
+              new Bowl(1),
+              new Bowl(4)
+            ],
+            
+          ),
+          new Score(
+            [
+              new Bowl(2),
+              new Bowl(5)
+            ],
+            
+          ),
+          new Score(
+            [
+              new Bowl(5),
+              new Bowl(1)
+            ],
+            
+          )
+        ]
+      ),
+      new ScoreCard(
+        new Player("Dimitry"),
+        [
+          new Score(
+            [
+              new Bowl(2),
+              new Bowl(8)
+            ],
+            
+          ),
+          new Score(
+            [
+              new Bowl(1),
+              new Bowl(4)
+            ],
+            
+          ),
+          new Score(
+            [
+              new Bowl(2),
+              new Bowl(5)
+            ],
+            
+          ),
+          new Score(
+            [
+              new Bowl(5),
+              new Bowl(1)
+            ],
+            
+          )
+        ]
+      ),
+      new ScoreCard(
+        new Player("Ryan"),
+        [
+          new Score(
+            [
+              new Bowl(2),
+              new Bowl(8)
+            ],
+            
+          ),
+          new Score(
+            [
+              new Bowl(1),
+              new Bowl(4)
+            ],
+            
+          ),
+          new Score(
+            [
+              new Bowl(2),
+              new Bowl(5)
+            ],
+            
+          ),
+          new Score(
+            [
+              new Bowl(5),
+              new Bowl(1)
+            ],
+            
+          )
+        ]
+      )
+    ]
+  ),
+  new Game(
+    2,
+    "Friday night",
+    [
+      new ScoreCard(
+        new Player("David"),
         [
           new Score(
             [
@@ -121,6 +227,11 @@ export class GamesService {
 
   getGames() {
     return gamesPromise;
+  }
+
+  getGameFromId(id: string | number) {
+    return gamesPromise
+      .then(games => games.find(game => game.id === id));
   }
 
 }

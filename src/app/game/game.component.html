@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8">
+    <div *ngIf="game">
+      <h1>{{game.title}}</h1>
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Player</th>
+            <th colspan="99">Score Card</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let scoreCard of game.scoreCards">
+            <td>{{scoreCard.player.name}}</td>
+            <td *ngFor="let score of scoreCard.scores">
+              <span *ngFor="let bowl of score.bowls; let i = index;">{{bowl.pinsDown}}{{i === score.bowls.length -1 ? '' : ', '}}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-sm-2"></div>
+</div>

@@ -9,9 +9,7 @@
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Previous Games
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Game 1</a></li>
-          <li><a href="#">Friday night</a></li>
-          <li><a href="#">Dimitry's Birthday</a></li> 
+          <li *ngFor="let game of games"><a (click)="onSelect(game)">{{game.title}}</a></li>
         </ul>
       </li>
     </ul>
