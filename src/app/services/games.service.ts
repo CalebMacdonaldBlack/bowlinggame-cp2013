@@ -9,6 +9,7 @@ let GAMES = [
   new Game(
     1,
     "game 1",
+    "Townsville Bowling Alley",
     [
       new ScoreCard(
         new Player("Caleb"),
@@ -114,6 +115,7 @@ let GAMES = [
   new Game(
     2,
     "Friday night",
+    "Ten pin bowling",
     [
       new ScoreCard(
         new Player("David"),

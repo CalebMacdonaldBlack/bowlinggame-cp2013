@@ -2,18 +2,21 @@
 <div class="new-game-form">
   <div class="form-group">
     <h2>Game Title</h2>
-    <input class="form-control" placeholder="eg. Game 1">
+    <input class="form-control" placeholder="eg. Game 1" [(ngModel)]="title">
   </div>
   <div class="form-group">
     <h2>Location</h2>
-    <input class="form-control" placeholder="eg. The Big Bowling Alley">
+    <input class="form-control" placeholder="eg. The Big Bowling Alley" [(ngModel)]="location">
   </div>
-  <div class="form-group">
-    <h2>Player 1 Name</h2>
-    <input class="form-control" placeholder="eg. John Smith">
+  <div *ngFor="let playerName of playerNames; let i = index">
+    <div class="form-group">
+      <h2>Player {{i + 1}} Name</h2>
+      <input class="form-control" placeholder="eg. John Smith">
+    </div>
   </div>
+  <button class="btn btn-success add-new-player" (click)="addNewPlayerClicked()"><span class="glyphicon glyphicon-plus"></span>Add New Player</button>
 
   <div class="create-game-btn-container">
-    <button class="btn btn-default">Create Game</button>
+    <button class="btn btn-default" (click)="createGameClicked()">Create Game</button>
   </div>
 </div>
