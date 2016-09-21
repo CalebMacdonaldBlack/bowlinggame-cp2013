@@ -8,10 +8,30 @@
     <h2>Location</h2>
     <input class="form-control" placeholder="eg. The Big Bowling Alley" [(ngModel)]="location">
   </div>
-  <div *ngFor="let playerName of playerNames; let i = index">
+  <div>
     <div class="form-group">
-      <h2>Player {{i + 1}} Name</h2>
-      <input class="form-control" placeholder="eg. John Smith">
+      <h2>Player 1 Name</h2>
+      <input class="form-control" placeholder="eg. John Smith" [(ngModel)]="playerNames[0]">
+    </div>
+    <div *ngIf="playerNames[1] == '' || playerNames[1]" class="form-group">
+      <h2>Player 2 Name</h2>
+      <input class="form-control player-name-input" placeholder="eg. John Smith" [(ngModel)]="playerNames[1]">
+      <button (click)="deleteInputClicked(1)" class="btn btn-danger delete-player-button"><span class="glyphicon glyphicon-trash"></span></button>
+    </div>
+    <div *ngIf="playerNames[2] == '' || playerNames[2]" class="form-group">
+      <h2>Player 3 Name</h2>
+      <input class="form-control player-name-input" placeholder="eg. John Smith" [(ngModel)]="playerNames[2]">
+      <button (click)="deleteInputClicked(2)" class="btn btn-danger delete-player-button"><span class="glyphicon glyphicon-trash"></span></button>
+    </div>
+    <div *ngIf="playerNames[3] == '' || playerNames[3]" class="form-group">
+      <h2>Player 4 Name</h2>
+      <input class="form-control player-name-input" placeholder="eg. John Smith" [(ngModel)]="playerNames[3]">
+      <button (click)="deleteInputClicked(3)" class="btn btn-danger delete-player-button"><span class="glyphicon glyphicon-trash"></span></button>
+    </div>
+    <div *ngIf="playerNames[4] == '' || playerNames[4]" class="form-group">
+      <h2>Player 5 Name</h2>
+      <input class="form-control player-name-input" placeholder="eg. John Smith" [(ngModel)]="playerNames[4]">
+      <button (click)="deleteInputClicked(4)" class="btn btn-danger delete-player-button"><span class="glyphicon glyphicon-trash"></span></button>
     </div>
   </div>
   <button class="btn btn-success add-new-player" (click)="addNewPlayerClicked()"><span class="glyphicon glyphicon-plus"></span>Add New Player</button>

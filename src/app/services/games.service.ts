@@ -236,4 +236,8 @@ export class GamesService {
       .then(games => games.find(game => game.id === id));
   }
 
+  addGame(game: Game) {
+    GAMES.push(game);
+  }
+
 }

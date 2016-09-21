@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { GamesService } from '../services/games.service';
+import { Router } from '@angular/router';
+
+import { Game } from '../models/game';
+import { Bowl } from '../models/bowl';
+import { Player } from '../models/player';
+import { ScoreCard } from '../models/score-card';
+import { Score } from '../models/score';
 
 @Component({
   selector: 'app-new-game',
@@ -10,29 +18,49 @@ export class NewGameComponent implements OnInit {
   title: string;
   location: string;
   playerNames: string[];
-  tempPlayerNames: string[];
-  
 
-  constructor() { }
+  constructor(
+    private gamesService: GamesService,
+    private router: Router
+    ) { }
 
   ngOnInit() {
-    this.playerNames = this.tempPlayerNames = [""];
+    this.playerNames = [""];
   }
 
   addNewPlayerClicked(){
-    this.tempPlayerNames.push("");
-    this.playerNames = this.tempPlayerNames;
-    
+    this.playerNames.push("");
   }
 
   nameInput(event: any, index: number){
-    console.log();
+    console.log(event.srcElement);
     
-    this.tempPlayerNames[index] = event.srcElement.value;
+    this.playerNames[index] = event.srcElement.value;
   }
 
   createGameClicked(){
-    this.playerNames = this.tempPlayerNames;
-    console.log(this.playerNames);
+    const game: Game = new Game(
+      this.gamesService.getGames.length,
+      this.location,
+      this.title,
+      []
+    );
+
+    for(let playerName of this.playerNames){
+      game.scoreCards.push(new ScoreCard(
+        new Player(playerName),
+        []
+      ))
+    }
+
+    this.gamesService.addGame(game);
+
+    this.router.navigate(['/list-games', game.id]);
+  }
+
+  deleteInputClicked(index: number){
+    console.log(index);
+    
+    this.playerNames.splice(index, 1);
   }
 }

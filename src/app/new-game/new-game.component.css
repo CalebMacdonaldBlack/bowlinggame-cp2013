@@ -21,3 +21,12 @@ h1 {
     background-color: transparent;
     color: black;
 }
+
+.player-name-input {
+    float: left;
+    width: 88%;
+}
+
+.delete-player-button {
+    width: 12%;
+}
