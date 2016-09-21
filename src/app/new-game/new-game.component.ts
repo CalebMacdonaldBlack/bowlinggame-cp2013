@@ -39,8 +39,10 @@ export class NewGameComponent implements OnInit {
   }
 
   createGameClicked(){
+    this.gamesService.getGames().then(games => {
+
     const game: Game = new Game(
-      this.gamesService.getGames.length,
+      games.length,
       this.location,
       this.title,
       []
@@ -56,6 +58,7 @@ export class NewGameComponent implements OnInit {
     this.gamesService.addGame(game);
 
     this.router.navigate(['/list-games', game.id]);
+    });
   }
 
   deleteInputClicked(index: number){

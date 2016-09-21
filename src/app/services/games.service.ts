@@ -7,7 +7,7 @@ import { Score } from '../models/score';
 
 let GAMES = [
   new Game(
-    1,
+    0,
     "game 1",
     "Townsville Bowling Alley",
     [
@@ -113,7 +113,7 @@ let GAMES = [
     ]
   ),
   new Game(
-    2,
+    1,
     "Friday night",
     "Ten pin bowling",
     [
