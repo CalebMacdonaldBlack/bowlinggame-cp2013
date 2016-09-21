@@ -8,8 +8,8 @@ import { Score } from '../models/score';
 let GAMES = [
   new Game(
     0,
-    "game 1",
     "Townsville Bowling Alley",
+    "game 1",
     [
       new ScoreCard(
         new Player("Caleb"),
@@ -18,29 +18,25 @@ let GAMES = [
             [
               new Bowl(2),
               new Bowl(8)
-            ],
-            
+            ]
           ),
           new Score(
             [
               new Bowl(1),
               new Bowl(4)
-            ],
-            
+            ]
           ),
           new Score(
             [
               new Bowl(2),
               new Bowl(5)
-            ],
-            
+            ]
           ),
           new Score(
             [
               new Bowl(5),
               new Bowl(1)
-            ],
-            
+            ]
           )
         ]
       ),
@@ -51,29 +47,25 @@ let GAMES = [
             [
               new Bowl(2),
               new Bowl(8)
-            ],
-            
+            ]
           ),
           new Score(
             [
               new Bowl(1),
               new Bowl(4)
-            ],
-            
+            ]
           ),
           new Score(
             [
               new Bowl(2),
               new Bowl(5)
-            ],
-            
+            ]
           ),
           new Score(
             [
               new Bowl(5),
               new Bowl(1)
-            ],
-            
+            ]
           )
         ]
       ),
@@ -84,29 +76,25 @@ let GAMES = [
             [
               new Bowl(2),
               new Bowl(8)
-            ],
-            
+            ]
           ),
           new Score(
             [
               new Bowl(1),
               new Bowl(4)
-            ],
-            
+            ]
           ),
           new Score(
             [
               new Bowl(2),
               new Bowl(5)
-            ],
-            
+            ]
           ),
           new Score(
             [
               new Bowl(5),
               new Bowl(1)
-            ],
-            
+            ]
           )
         ]
       )
@@ -114,8 +102,8 @@ let GAMES = [
   ),
   new Game(
     1,
-    "Friday night",
     "Ten pin bowling",
+    "Friday night",
     [
       new ScoreCard(
         new Player("David"),
@@ -124,29 +112,25 @@ let GAMES = [
             [
               new Bowl(2),
               new Bowl(8)
-            ],
-            
+            ]
           ),
           new Score(
             [
               new Bowl(1),
               new Bowl(4)
-            ],
-            
+            ]
           ),
           new Score(
             [
               new Bowl(2),
               new Bowl(5)
-            ],
-            
+            ]
           ),
           new Score(
             [
               new Bowl(5),
               new Bowl(1)
-            ],
-            
+            ]
           )
         ]
       ),
@@ -157,29 +141,25 @@ let GAMES = [
             [
               new Bowl(2),
               new Bowl(8)
-            ],
-            
+            ]
           ),
           new Score(
             [
               new Bowl(1),
               new Bowl(4)
-            ],
-            
+            ]
           ),
           new Score(
             [
               new Bowl(2),
               new Bowl(5)
-            ],
-            
+            ]
           ),
           new Score(
             [
               new Bowl(5),
               new Bowl(1)
-            ],
-            
+            ]
           )
         ]
       ),
@@ -190,29 +170,25 @@ let GAMES = [
             [
               new Bowl(2),
               new Bowl(8)
-            ],
-            
+            ]
           ),
           new Score(
             [
               new Bowl(1),
               new Bowl(4)
-            ],
-            
+            ]
           ),
           new Score(
             [
               new Bowl(2),
               new Bowl(5)
-            ],
-            
+            ]
           ),
           new Score(
             [
               new Bowl(5),
               new Bowl(1)
-            ],
-            
+            ]
           )
         ]
       )
