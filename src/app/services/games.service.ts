@@ -113,7 +113,8 @@ let GAMES = [
         ],
             false
       )
-    ]
+    ],
+    false
   ),
   new Game(
     1,
@@ -221,7 +222,8 @@ let GAMES = [
         ],
             false
       )
-    ]
+    ],
+    false
   )
 ]
 

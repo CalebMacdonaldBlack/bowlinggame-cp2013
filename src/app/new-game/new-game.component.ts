@@ -45,7 +45,8 @@ export class NewGameComponent implements OnInit {
       games.length,
       this.location,
       this.title,
-      []
+      [],
+      false
     );
 
     for(let playerName of this.playerNames){

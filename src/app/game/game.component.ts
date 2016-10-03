@@ -37,6 +37,10 @@ export class GameComponent implements OnInit {
   findPossiblePins(): void {
     let currentScoreCard: ScoreCard = this.getCurrentScoreCard();
     this.currentPlayer = currentScoreCard.player.name;
+    if(!this.getCurrentScore(currentScoreCard) && currentScoreCard.scores.length === 10){
+      this.game.isFinished = true;
+      return;
+    }
     let currentScore: Score = this.getCurrentScore(currentScoreCard) || new Score([], false);
     let possiblePinsCount = this.findRemainingPinsPossible(currentScore);
     this.currentBowl = currentScore.bowls.length + 1;
