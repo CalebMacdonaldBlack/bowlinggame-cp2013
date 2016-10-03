@@ -1,42 +1,63 @@
 <h1>New Game</h1>
-<div class="new-game-form">
+<form class="new-game-form" (ngSubmit)="createGameClicked()" #newGameForm="ngForm">
   <div class="form-group">
     <h2>Game Title</h2>
-    <input class="form-control" placeholder="eg. Game 1" [(ngModel)]="title">
+    <input class="form-control" placeholder="eg. Game 1" [(ngModel)]="title" name="title" #titleInput="ngModel" required>
+    <div [hidden]="titleInput.valid || titleInput.pristine" class="alert alert-danger">
+      Title is required
+    </div>
   </div>
   <div class="form-group">
     <h2>Location</h2>
-    <input class="form-control" placeholder="eg. The Big Bowling Alley" [(ngModel)]="location">
+    <input class="form-control" placeholder="eg. The Big Bowling Alley" [(ngModel)]="location" name="location" #locationInput="ngModel" required>
+    <div [hidden]="locationInput.valid || locationInput.pristine" class="alert alert-danger">
+      Location is required
+    </div>
   </div>
   <div>
     <div class="form-group">
       <h2>Player 1 Name</h2>
-      <input class="form-control" placeholder="eg. John Smith" [(ngModel)]="playerNames[0]">
+      <input class="form-control" placeholder="eg. John Smith" [(ngModel)]="playerNames[0]" name="player1" #player1="ngModel" required>
+    <div [hidden]="player1.valid || player1.pristine" class="alert alert-danger">
+      Player 1 is required
+    </div>
     </div>
     <div *ngIf="playerNames[1] == '' || playerNames[1]" class="form-group">
       <h2>Player 2 Name</h2>
-      <input class="form-control player-name-input" placeholder="eg. John Smith" [(ngModel)]="playerNames[1]">
+      <input class="form-control player-name-input" placeholder="eg. John Smith" [(ngModel)]="playerNames[1]" name="player2" #player2="ngModel" required>
       <button (click)="deleteInputClicked(1)" class="btn btn-danger delete-player-button"><span class="glyphicon glyphicon-trash"></span></button>
+    <div [hidden]="player2.valid || player2.pristine" class="alert alert-danger">
+      Player 2 is required
+    </div>
     </div>
     <div *ngIf="playerNames[2] == '' || playerNames[2]" class="form-group">
       <h2>Player 3 Name</h2>
-      <input class="form-control player-name-input" placeholder="eg. John Smith" [(ngModel)]="playerNames[2]">
+      <input class="form-control player-name-input" placeholder="eg. John Smith" [(ngModel)]="playerNames[2]" name="player3" #player3="ngModel" required>
       <button (click)="deleteInputClicked(2)" class="btn btn-danger delete-player-button"><span class="glyphicon glyphicon-trash"></span></button>
+    <div [hidden]="player3.valid || player3.pristine" class="alert alert-danger">
+      Player 3 is required
+    </div>
     </div>
     <div *ngIf="playerNames[3] == '' || playerNames[3]" class="form-group">
       <h2>Player 4 Name</h2>
-      <input class="form-control player-name-input" placeholder="eg. John Smith" [(ngModel)]="playerNames[3]">
+      <input class="form-control player-name-input" placeholder="eg. John Smith" [(ngModel)]="playerNames[3]" name="player4" #player4="ngModel" required>
       <button (click)="deleteInputClicked(3)" class="btn btn-danger delete-player-button"><span class="glyphicon glyphicon-trash"></span></button>
+    <div [hidden]="player4.valid || player4.pristine" class="alert alert-danger">
+      Player 4 is required
+    </div>
     </div>
     <div *ngIf="playerNames[4] == '' || playerNames[4]" class="form-group">
       <h2>Player 5 Name</h2>
-      <input class="form-control player-name-input" placeholder="eg. John Smith" [(ngModel)]="playerNames[4]">
+      <input class="form-control player-name-input" placeholder="eg. John Smith" [(ngModel)]="playerNames[4]" name="player5" #player5="ngModel" required>
       <button (click)="deleteInputClicked(4)" class="btn btn-danger delete-player-button"><span class="glyphicon glyphicon-trash"></span></button>
+    <div [hidden]="player5.valid || player5.pristine" class="alert alert-danger">
+      Player 5 is required
+    </div>
     </div>
   </div>
   <button class="btn btn-success add-new-player" (click)="addNewPlayerClicked()"><span class="glyphicon glyphicon-plus"></span>Add New Player</button>
 
   <div class="create-game-btn-container">
-    <button class="btn btn-default" (click)="createGameClicked()">Create Game</button>
+    <button type="submit" class="btn btn-default" [disabled]="!newGameForm.form.valid">Create Game</button>
   </div>
-</div>
+</form>
