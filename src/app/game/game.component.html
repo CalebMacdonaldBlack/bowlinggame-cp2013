@@ -21,10 +21,10 @@
         </tbody>
       </table>
 
-      <h2>Caleb's Turn</h2>
+      <h2>{{currentPlayer}}'s Turn <br>Bowl: {{currentBowl}}</h2>
         <div class="form-group">
           <h3>Select Pins Down</h3>
-          <button *ngFor="let pinsDown of possiblePins;" class="btn btn-success">{{pinsDown}}</button>
+          <button *ngFor="let pinsDown of possiblePins;" class="btn btn-success" (click)="pinsDownClicked(pinsDown)">{{pinsDown}}</button>
         </div>
     </div>
   </div>

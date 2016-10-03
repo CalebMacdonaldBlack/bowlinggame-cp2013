@@ -108,7 +108,7 @@ let GAMES = [
               new Bowl(5),
               new Bowl(1)
             ],
-            true
+            false
           )
         ],
             false
@@ -147,7 +147,7 @@ let GAMES = [
           new Score(
             [
               new Bowl(5),
-              new Bowl(1)
+              new Bowl(5)
             ],
             true
           )
@@ -214,8 +214,7 @@ let GAMES = [
           ),
           new Score(
             [
-              new Bowl(5),
-              new Bowl(1)
+              new Bowl(10)
             ],
             true
           )
