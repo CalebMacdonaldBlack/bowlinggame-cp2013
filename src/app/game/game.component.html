@@ -8,14 +8,45 @@
         <thead>
           <tr>
             <th class="player-column">Player</th>
-            <th colspan="99">Score Card</th>
+            <th colspan="10">Score Card</th>
+            <th>Total Score</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let scoreCard of game.scoreCards">
             <td>{{scoreCard.player.name}}</td>
-            <td *ngFor="let score of scoreCard.scores">
-              <span *ngFor="let bowl of score.bowls; let i = index;">{{bowl.pinsDown}}{{i === score.bowls.length -1 ? '' : ', '}}</span>
+            <td>
+              <span *ngIf="scoreCard.scores[0]"><span *ngFor="let bowl of scoreCard.scores[0].bowls; let i = index;">{{bowl.pinsDown}}{{i === scoreCard.scores[0].bowls.length -1 ? '' : ', '}}</span></span>
+            </td>
+            <td>
+              <span *ngIf="scoreCard.scores[1]"><span *ngFor="let bowl of scoreCard.scores[1].bowls; let i = index;">{{bowl.pinsDown}}{{i === scoreCard.scores[1].bowls.length -1 ? '' : ', '}}</span></span>
+            </td>
+            <td>
+              <span *ngIf="scoreCard.scores[2]"><span *ngFor="let bowl of scoreCard.scores[2].bowls; let i = index;">{{bowl.pinsDown}}{{i === scoreCard.scores[2].bowls.length -1 ? '' : ', '}}</span></span>
+            </td>
+            <td>
+              <span *ngIf="scoreCard.scores[3]"><span *ngFor="let bowl of scoreCard.scores[3].bowls; let i = index;">{{bowl.pinsDown}}{{i === scoreCard.scores[3].bowls.length -1 ? '' : ', '}}</span></span>
+            </td>
+            <td>
+              <span *ngIf="scoreCard.scores[4]"><span *ngFor="let bowl of scoreCard.scores[4].bowls; let i = index;">{{bowl.pinsDown}}{{i === scoreCard.scores[4].bowls.length -1 ? '' : ', '}}</span></span>
+            </td>
+            <td>
+              <span *ngIf="scoreCard.scores[5]"><span *ngFor="let bowl of scoreCard.scores[5].bowls; let i = index;">{{bowl.pinsDown}}{{i === scoreCard.scores[5].bowls.length -1 ? '' : ', '}}</span></span>
+            </td>
+            <td>
+              <span *ngIf="scoreCard.scores[6]"><span *ngFor="let bowl of scoreCard.scores[6].bowls; let i = index;">{{bowl.pinsDown}}{{i === scoreCard.scores[6].bowls.length -1 ? '' : ', '}}</span></span>
+            </td>
+            <td>
+              <span *ngIf="scoreCard.scores[7]"><span *ngFor="let bowl of scoreCard.scores[7].bowls; let i = index;">{{bowl.pinsDown}}{{i === scoreCard.scores[7].bowls.length -1 ? '' : ', '}}</span></span>
+            </td>
+            <td>
+              <span *ngIf="scoreCard.scores[8]"><span *ngFor="let bowl of scoreCard.scores[8].bowls; let i = index;">{{bowl.pinsDown}}{{i === scoreCard.scores[8].bowls.length -1 ? '' : ', '}}</span></span>
+            </td>
+            <td>
+              <span *ngIf="scoreCard.scores[9]"><span *ngFor="let bowl of scoreCard.scores[9].bowls; let i = index;">{{bowl.pinsDown}}{{i === scoreCard.scores[9].bowls.length -1 ? '' : ', '}}</span></span>
+            </td>
+            <td>
+              <span class="score">{{calculateScore(scoreCard)}}</span>
             </td>
           </tr>
         </tbody>

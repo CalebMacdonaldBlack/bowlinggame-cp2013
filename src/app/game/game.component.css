@@ -5,3 +5,7 @@
 .pin-down-input {
     width: 8em;
 }
+
+.score {
+    font-weight: bold;
+}

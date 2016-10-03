@@ -79,7 +79,7 @@ export class GameComponent implements OnInit {
         if (scorecard.scores[scorecard.scores.length - 1] && !scorecard.scores[scorecard.scores.length - 1].completed) {
           currentScoreCard = scorecard;
           break;
-        }else if (!currentScoreCard || currentScoreCard.scores.length > scorecard.scores.length) {
+        } else if (!currentScoreCard || currentScoreCard.scores.length > scorecard.scores.length) {
           currentScoreCard = scorecard;
         }
       }
@@ -98,10 +98,56 @@ export class GameComponent implements OnInit {
     }
 
     if (currentScore.bowls.length == 2) {
-        currentScore.completed = true;
-      } else if(pinsDown == 10){
-        currentScore.completed = true;
-      }
+      currentScore.completed = true;
+    } else if (pinsDown == 10) {
+      currentScore.completed = true;
+    }
     this.findPossiblePins();
+  }
+
+  calculateScore(scoreCard: ScoreCard): number {
+    let totalScore: number = 0;
+    for (let i = 0; i < scoreCard.scores.length; i++) {
+      if (scoreCard.scores[i].bowls[0].pinsDown === 10) {
+        totalScore += this.calculateStrike(scoreCard.scores, i);
+      } else if (scoreCard.scores[i].bowls[0].pinsDown + scoreCard.scores[i].bowls[1].pinsDown === 10) {
+        totalScore += this.calculateSpare(scoreCard.scores, i);
+      } else {
+        totalScore += this.calculateNormalFrame(scoreCard.scores, i);
+      }
+    }
+    return totalScore;
+  }
+
+  calculateStrike(scores: Score[], i: number): number {
+    try {
+      let totalScore = 10;
+      let pinsDown = scores[i + 1].bowls[0].pinsDown;
+      totalScore += pinsDown;
+      if (pinsDown == 10) {
+        totalScore += scores[i + 2].bowls[0].pinsDown;
+      } else {
+        totalScore += scores[i + 1].bowls[1].pinsDown;
+      }
+      return totalScore;
+    } catch (err) {
+      return 0;
+    }
+  }
+
+  calculateSpare(scores: Score[], i: number): number {
+    try {
+      return 10 + scores[i + 1].bowls[0].pinsDown;
+    } catch (err) {
+      return 0;
+    }
+  }
+
+  calculateNormalFrame(scores: Score[], i: number): number {
+    try {
+      return scores[i].bowls[0].pinsDown + scores[i].bowls[1].pinsDown;
+    } catch (err) {
+      return 0;
+    }
   }
 }
