@@ -4,6 +4,7 @@ import { GamesService } from '../services/games.service';
 import { Game } from '../models/game';
 import { ScoreCard } from '../models/score-card';
 import { Score } from '../models/score';
+import { Bowl } from '../models/bowl';
 
 @Component({
   selector: 'app-game',
@@ -39,28 +40,11 @@ export class GameComponent implements OnInit {
   }
 
   findPossiblePins(): void {
-    let currentScoreCard: ScoreCard;
-    for (let scorecard of this.game.scoreCards) {
-      if (!scorecard.completed) {
-        if (!currentScoreCard || currentScoreCard.scores.length > scorecard.scores.length) {
-          currentScoreCard = scorecard;
-          this.currentPlayer = scorecard.player.name;
-        } else if(scorecard.scores[scorecard.scores.length - 1] && !scorecard.scores[scorecard.scores.length - 1].completed){
-          currentScoreCard = scorecard;
-          this.currentPlayer = scorecard.player.name;
-          break;
-        }
-      }
-    }
+    let currentScoreCard: ScoreCard = this.getCurrentScoreCard();
+    this.currentPlayer = currentScoreCard.player.name;
 
-    let currentScore: Score = new Score([], false);
-    for (let score of currentScoreCard.scores) {
-      if (!score.completed) {
-        currentScore = score;
-        break;
-      }
-    }
-    
+    let currentScore: Score = this.getCurrentScore(currentScoreCard) || new Score([], false);
+
     const possiblePinsCount = this.findRemainingPinsPossible(currentScore);
     this.currentBowl = currentScore.bowls.length + 1;
     this.possiblePins = [];
@@ -77,7 +61,47 @@ export class GameComponent implements OnInit {
     return possiblePins;
   }
 
-  pinsDownClicked(count: number){
-    console.log(count);
+  getCurrentScore(currentScoreCard: ScoreCard): Score {
+    let currentScore;
+    for (let score of currentScoreCard.scores) {
+      if (!score.completed) {
+        currentScore = score;
+        break;
+      }
+    }
+    return currentScore;
+  }
+
+  getCurrentScoreCard(): ScoreCard {
+    let currentScoreCard: ScoreCard;
+    for (let scorecard of this.game.scoreCards) {
+      if (!scorecard.completed) {
+        if (scorecard.scores[scorecard.scores.length - 1] && !scorecard.scores[scorecard.scores.length - 1].completed) {
+          currentScoreCard = scorecard;
+          break;
+        }else if (!currentScoreCard || currentScoreCard.scores.length > scorecard.scores.length) {
+          currentScoreCard = scorecard;
+        }
+      }
+    }
+    return currentScoreCard;
+  }
+
+  pinsDownClicked(pinsDown: number) {
+    let currentScoreCard: ScoreCard = this.getCurrentScoreCard();
+    let currentScore: Score = this.getCurrentScore(currentScoreCard);
+    if (currentScore) {
+      currentScore.bowls.push(new Bowl(pinsDown));
+    } else {
+      currentScore = new Score([new Bowl(pinsDown)], false);
+      currentScoreCard.scores.push(currentScore);
+    }
+
+    if (currentScore.bowls.length == 2) {
+        currentScore.completed = true;
+      } else if(pinsDown == 10){
+        currentScore.completed = true;
+      }
+    this.findPossiblePins();
   }
 }
