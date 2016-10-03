@@ -34,20 +34,16 @@ export class GameComponent implements OnInit {
     });
   }
 
-  onType() {
-    console.log("type");
-
-  }
-
   findPossiblePins(): void {
     let currentScoreCard: ScoreCard = this.getCurrentScoreCard();
     this.currentPlayer = currentScoreCard.player.name;
-
     let currentScore: Score = this.getCurrentScore(currentScoreCard) || new Score([], false);
-
-    const possiblePinsCount = this.findRemainingPinsPossible(currentScore);
+    let possiblePinsCount = this.findRemainingPinsPossible(currentScore);
     this.currentBowl = currentScore.bowls.length + 1;
     this.possiblePins = [];
+    if (possiblePinsCount <= 0) {
+      possiblePinsCount = 10;
+    }
     for (let i = 0; i <= possiblePinsCount; i++) {
       this.possiblePins.push(i);
     }
@@ -97,9 +93,9 @@ export class GameComponent implements OnInit {
       currentScoreCard.scores.push(currentScore);
     }
 
-    if (currentScore.bowls.length == 2) {
+    if (currentScore.bowls.length == 2 && !(currentScoreCard.scores.length == 10 && (currentScore.bowls[1].pinsDown == 10 || currentScore.bowls[0].pinsDown + currentScore.bowls[1].pinsDown == 10))) {
       currentScore.completed = true;
-    } else if (pinsDown == 10) {
+    } else if (pinsDown == 10 && !(currentScore.bowls.length < 3 && currentScoreCard.scores.length == 10)) {
       currentScore.completed = true;
     }
     this.findPossiblePins();
@@ -108,38 +104,53 @@ export class GameComponent implements OnInit {
   calculateScore(scoreCard: ScoreCard): number {
     let totalScore: number = 0;
     for (let i = 0; i < scoreCard.scores.length; i++) {
-      if (scoreCard.scores[i].bowls[0].pinsDown === 10) {
-        totalScore += this.calculateStrike(scoreCard.scores, i);
-      } else if (scoreCard.scores[i].bowls[0].pinsDown + scoreCard.scores[i].bowls[1].pinsDown === 10) {
-        totalScore += this.calculateSpare(scoreCard.scores, i);
+      if (i === 9) {
+        if (scoreCard.scores[i].bowls[0].pinsDown === 10) {
+          totalScore += this.calculateStrike(scoreCard.scores, i, true);
+        } else if (scoreCard.scores[i].bowls[0] && scoreCard.scores[i].bowls[1] && (scoreCard.scores[i].bowls[0].pinsDown + scoreCard.scores[i].bowls[1].pinsDown === 10)) {
+          totalScore += this.calculateSpare(scoreCard.scores, i, true);
+        } else {
+          totalScore += this.calculateNormalFrame(scoreCard.scores, i);
+        }
       } else {
-        totalScore += this.calculateNormalFrame(scoreCard.scores, i);
+        if (scoreCard.scores[i].bowls[0].pinsDown === 10) {
+          totalScore += this.calculateStrike(scoreCard.scores, i, false);
+        } else if (scoreCard.scores[i].bowls[0] && scoreCard.scores[i].bowls[1] && (scoreCard.scores[i].bowls[0].pinsDown + scoreCard.scores[i].bowls[1].pinsDown === 10)) {
+          totalScore += this.calculateSpare(scoreCard.scores, i, false);
+        } else {
+          totalScore += this.calculateNormalFrame(scoreCard.scores, i);
+        }
       }
+
     }
     return totalScore;
   }
 
-  calculateStrike(scores: Score[], i: number): number {
-    try {
+  calculateStrike(scores: Score[], i: number, isFinal: boolean): number {
+    if (!isFinal) {
       let totalScore = 10;
-      let pinsDown = scores[i + 1].bowls[0].pinsDown;
+      let pinsDown = scores[i + 1] ? scores[i + 1].bowls[0].pinsDown : 0;
       totalScore += pinsDown;
       if (pinsDown == 10) {
-        totalScore += scores[i + 2].bowls[0].pinsDown;
+        totalScore += scores[i + 2] ? scores[i + 2].bowls[0].pinsDown : 0;
       } else {
-        totalScore += scores[i + 1].bowls[1].pinsDown;
+        totalScore += scores[i + 1] ? scores[i + 1].bowls[1] ? scores[i + 1].bowls[1].pinsDown : 0 : 0;
       }
       return totalScore;
-    } catch (err) {
-      return 0;
+    } else {
+      if (scores[i - 1].bowls[0].pinsDown == 10) {
+        return 20 + (scores[i].bowls[1] ? scores[i].bowls[1].pinsDown : 0) + (scores[i].bowls[2] ? scores[i].bowls[2].pinsDown : 0);
+      } else {
+        return 10 + (scores[i].bowls[1] ? scores[i].bowls[1].pinsDown : 0) + (scores[i].bowls[2] ? scores[i].bowls[2].pinsDown : 0);
+      }
     }
   }
 
-  calculateSpare(scores: Score[], i: number): number {
-    try {
-      return 10 + scores[i + 1].bowls[0].pinsDown;
-    } catch (err) {
-      return 0;
+  calculateSpare(scores: Score[], i: number, isFinal: boolean): number {
+    if (!isFinal) {
+      return 10 + (scores[i + 1] ? scores[i + 1].bowls[0].pinsDown : 0);
+    } else {
+      return 10 + (scores[i].bowls[2] ? scores[i].bowls[2].pinsDown : 0);
     }
   }
 
