@@ -11,6 +11,7 @@ import { Game } from '../models/game';
 export class GameComponent implements OnInit {
 
   game: Game;
+  possiblePins: number[] = [0,1,2,3,4,5];
 
   constructor(
     private route: ActivatedRoute,
@@ -25,4 +26,8 @@ export class GameComponent implements OnInit {
      });
   }
 
+  onType() {
+    console.log("type");
+    
+  }
 }
