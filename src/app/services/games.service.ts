@@ -18,27 +18,32 @@ let GAMES = [
             [
               new Bowl(2),
               new Bowl(8)
-            ]
+            ],
+            true
           ),
           new Score(
             [
               new Bowl(1),
               new Bowl(4)
-            ]
+            ],
+            true
           ),
           new Score(
             [
               new Bowl(2),
               new Bowl(5)
-            ]
+            ],
+            true
           ),
           new Score(
             [
               new Bowl(5),
               new Bowl(1)
-            ]
+            ],
+            true
           )
-        ]
+        ],
+            false
       ),
       new ScoreCard(
         new Player("Dimitry"),
@@ -47,27 +52,32 @@ let GAMES = [
             [
               new Bowl(2),
               new Bowl(8)
-            ]
+            ],
+            true
           ),
           new Score(
             [
               new Bowl(1),
               new Bowl(4)
-            ]
+            ],
+            true
           ),
           new Score(
             [
               new Bowl(2),
               new Bowl(5)
-            ]
+            ],
+            true
           ),
           new Score(
             [
               new Bowl(5),
               new Bowl(1)
-            ]
+            ],
+            true
           )
-        ]
+        ],
+            false
       ),
       new ScoreCard(
         new Player("Ryan"),
@@ -76,27 +86,32 @@ let GAMES = [
             [
               new Bowl(2),
               new Bowl(8)
-            ]
+            ],
+            true
           ),
           new Score(
             [
               new Bowl(1),
               new Bowl(4)
-            ]
+            ],
+            true
           ),
           new Score(
             [
               new Bowl(2),
               new Bowl(5)
-            ]
+            ],
+            true
           ),
           new Score(
             [
               new Bowl(5),
               new Bowl(1)
-            ]
+            ],
+            true
           )
-        ]
+        ],
+            false
       )
     ]
   ),
@@ -112,27 +127,32 @@ let GAMES = [
             [
               new Bowl(2),
               new Bowl(8)
-            ]
+            ],
+            true
           ),
           new Score(
             [
               new Bowl(1),
               new Bowl(4)
-            ]
+            ],
+            true
           ),
           new Score(
             [
               new Bowl(2),
               new Bowl(5)
-            ]
+            ],
+            true
           ),
           new Score(
             [
               new Bowl(5),
               new Bowl(1)
-            ]
+            ],
+            true
           )
-        ]
+        ],
+            false
       ),
       new ScoreCard(
         new Player("Dimitry"),
@@ -141,27 +161,32 @@ let GAMES = [
             [
               new Bowl(2),
               new Bowl(8)
-            ]
+            ],
+            true
           ),
           new Score(
             [
               new Bowl(1),
               new Bowl(4)
-            ]
+            ],
+            true
           ),
           new Score(
             [
               new Bowl(2),
               new Bowl(5)
-            ]
+            ],
+            true
           ),
           new Score(
             [
               new Bowl(5),
               new Bowl(1)
-            ]
+            ],
+            true
           )
-        ]
+        ],
+            false
       ),
       new ScoreCard(
         new Player("Ryan"),
@@ -170,27 +195,32 @@ let GAMES = [
             [
               new Bowl(2),
               new Bowl(8)
-            ]
+            ],
+            true
           ),
           new Score(
             [
               new Bowl(1),
               new Bowl(4)
-            ]
+            ],
+            true
           ),
           new Score(
             [
               new Bowl(2),
               new Bowl(5)
-            ]
+            ],
+            true
           ),
           new Score(
             [
               new Bowl(5),
               new Bowl(1)
-            ]
+            ],
+            true
           )
-        ]
+        ],
+            false
       )
     ]
   )

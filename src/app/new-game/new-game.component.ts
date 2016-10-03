@@ -51,7 +51,7 @@ export class NewGameComponent implements OnInit {
     for(let playerName of this.playerNames){
       game.scoreCards.push(new ScoreCard(
         new Player(playerName),
-        []
+        [], false
       ))
     }
 
