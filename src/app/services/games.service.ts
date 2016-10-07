@@ -4,6 +4,7 @@ import { Bowl } from '../models/bowl';
 import { Player } from '../models/player';
 import { ScoreCard } from '../models/score-card';
 import { Score } from '../models/score';
+import { FirebaseService } from './firebase.service';
 
 let GAMES = [
   new Game(
@@ -43,7 +44,7 @@ let GAMES = [
             true
           )
         ],
-            false
+        false
       ),
       new ScoreCard(
         new Player("Dimitry"),
@@ -77,7 +78,7 @@ let GAMES = [
             true
           )
         ],
-            false
+        false
       ),
       new ScoreCard(
         new Player("Ryan"),
@@ -111,7 +112,7 @@ let GAMES = [
             false
           )
         ],
-            false
+        false
       )
     ],
     false
@@ -153,7 +154,7 @@ let GAMES = [
             true
           )
         ],
-            false
+        false
       ),
       new ScoreCard(
         new Player("Dimitry"),
@@ -187,7 +188,7 @@ let GAMES = [
             true
           )
         ],
-            false
+        false
       ),
       new ScoreCard(
         new Player("Ryan"),
@@ -220,7 +221,7 @@ let GAMES = [
             true
           )
         ],
-            false
+        false
       )
     ],
     false
@@ -232,19 +233,63 @@ let gamesPromise = Promise.resolve(GAMES);
 @Injectable()
 export class GamesService {
 
-  constructor() { }
+  games: Game[];
 
-  getGames() {
-    return gamesPromise;
+  constructor(private firebaseService: FirebaseService) {
   }
 
+
   getGameFromId(id: string | number) {
-    return gamesPromise
+    return this.getGames()
       .then(games => games.find(game => game.id === id));
   }
 
-  addGame(game: Game) {
-    GAMES.push(game);
+  addGame(game: Game): Promise<any> {
+    return this.getGames().then(games => {
+      games.push(game);
+        return this.save(games);
+    });
   }
 
+  save(games: Game[]) {
+    return new Promise((resolve, reject) => {
+      this.firebaseService.setData(games)
+        .subscribe(
+        response => {resolve(response.data)},
+        error => reject(error)
+        );
+    });
+  }
+
+  updateGame(updatedGame: Game){
+    const context = this;
+    this.getGames().then(games => {
+      for(let i=0;i<games.length;i++){
+        if (games[i].id === updatedGame.id){
+          games[i] = updatedGame;
+          this.save(games);
+          break;
+        }
+      }
+    });
+  }
+
+  getGames(): Promise<Game[]> {
+    return new Promise((resolve, reject) => {
+      this.firebaseService.getData()
+        .subscribe(
+        response => {
+          for(let game of response.data){
+            for(let scoreCard of game.scoreCards){
+              if(!scoreCard.scores){
+                scoreCard.scores = []
+              }
+            }
+          }
+          resolve(response.data)
+        },
+        error => reject(error)
+        );
+    });
+  }
 }

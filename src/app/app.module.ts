@@ -9,6 +9,7 @@ import { NewGameComponent } from './new-game/new-game.component';
 import { GamesService } from './services/games.service';
 import { ListGamesComponent } from './list-games/list-games.component';
 import { GameComponent } from './game/game.component';
+import { FirebaseService } from './services/firebase.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { GameComponent } from './game/game.component';
     HttpModule,
     routing
   ],
-  providers: [ appRoutingProviders, GamesService ],
+  providers: [ appRoutingProviders, FirebaseService, GamesService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

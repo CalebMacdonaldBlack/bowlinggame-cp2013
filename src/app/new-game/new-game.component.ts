@@ -22,49 +22,49 @@ export class NewGameComponent implements OnInit {
   constructor(
     private gamesService: GamesService,
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.playerNames = [""];
   }
 
-  addNewPlayerClicked(){
+  addNewPlayerClicked() {
     this.playerNames.push("");
   }
 
-  nameInput(event: any, index: number){
+  nameInput(event: any, index: number) {
     console.log(event.srcElement);
-    
+
     this.playerNames[index] = event.srcElement.value;
   }
 
-  createGameClicked(){
+  createGameClicked() {
     this.gamesService.getGames().then(games => {
 
-    const game: Game = new Game(
-      games.length,
-      this.location,
-      this.title,
-      [],
-      false
-    );
+      const game: Game = new Game(
+        games.length,
+        this.location,
+        this.title,
+        [],
+        false
+      );
 
-    for(let playerName of this.playerNames){
-      game.scoreCards.push(new ScoreCard(
-        new Player(playerName),
-        [], false
-      ))
-    }
+      for (let playerName of this.playerNames) {
+        game.scoreCards.push(new ScoreCard(
+          new Player(playerName),
+          [], false
+        ))
+      }
 
-    this.gamesService.addGame(game);
-
-    this.router.navigate(['/list-games', game.id]);
+      this.gamesService.addGame(game).then(() => {
+        this.router.navigate(['/list-games', game.id]);
+      });
     });
   }
 
-  deleteInputClicked(index: number){
+  deleteInputClicked(index: number) {
     console.log(index);
-    
+
     this.playerNames.splice(index, 1);
   }
 }

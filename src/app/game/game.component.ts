@@ -103,6 +103,7 @@ export class GameComponent implements OnInit {
       currentScore.completed = true;
     }
     this.findPossiblePins();
+    this.gamesService.updateGame(this.game);
   }
 
   calculateScore(scoreCard: ScoreCard): number {

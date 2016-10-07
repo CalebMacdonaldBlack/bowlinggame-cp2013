@@ -9,7 +9,8 @@ const appRoutes: Routes = [
   { path: 'homepage', component: HomepageComponent },
   { path: 'new-game', component: NewGameComponent },
   { path: 'list-games', component: ListGamesComponent },
-  { path: 'list-games/:id', component: GameComponent }
+  { path: 'list-games/:id', component: GameComponent },
+  { path: '', redirectTo: '/homepage', pathMatch: 'full'}
 ];
 
 export const appRoutingProviders: any[] = [
